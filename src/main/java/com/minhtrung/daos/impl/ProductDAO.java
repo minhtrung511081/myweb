@@ -28,29 +28,26 @@ public class ProductDAO extends AbstractDAO<Product> implements IProductDAO{
 
 	@Override
 	public Product findOne(Long id) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM product as p inner join category as c");
-		sql.append(" where p.categoryid=c.id and p.id=?");
+		StringBuilder sql = new StringBuilder("SELECT * FROM product ");
+		sql.append("where id=?");
 		return query(sql.toString(),new ProductMapper(), id).get(0);
 	}
 	
 	@Override
 	public Long insert(Product product) {
-		StringBuilder sql = new StringBuilder("insert into product  ");
-		sql.append("(name,code,price,amount,categoryid,createtime,updatetime,createby,modifiedby)");
-		sql.append(" value (?,?,?,?,?,?,?,?,?)");
+		StringBuilder sql = new StringBuilder("insert into product");
+		sql.append("(name,code,price,quantity,categorycode,createby,createtime)");
+		sql.append(" value (?,?,?,?,?,?,?)");
 		return insert(sql.toString(),new ProductMapper(), product.getName(),product.getCode(),
-				product.getPrice(),product.getAmount(),product.getCategoryid(),product
-				.getCreateTime(),product.getUpdateTime(),product.getCreatedBy(),product.getModifiedBy());
+				product.getPrice(),product.getQuantity(),product.getCategorycode(),product.getCreatedBy(),product.getCreateTime());
 	}
 
 	@Override
 	public void update(Product product) {
 		StringBuilder sql = new StringBuilder("update product set ");
-		sql.append("name=?, code=?, price=?, amount=?, categoryid=?, createtime=?, updatetime=?, createby=?, modifiedby=?");
-		sql.append(" where id=?");
-		update(sql.toString(),product.getName(),product.getCode(),
-				product.getPrice(),product.getAmount(),product.getCategoryid(),product
-				.getCreateTime(),product.getUpdateTime(),product.getCreatedBy(),product.getModifiedBy(),product.getId());
+		sql.append("name=?, code=?, price=?, quantity=?");
+		sql.append(" where categorycode=?");
+		update(sql.toString(),product.getName(),product.getCode(), product.getPrice(),product.getQuantity(),product.getCategorycode());
 	}
 
 	@Override

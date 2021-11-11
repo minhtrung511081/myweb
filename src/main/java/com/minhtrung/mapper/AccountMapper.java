@@ -18,15 +18,11 @@ public class AccountMapper implements RowMapper<Account>{
 			account.setFullname(resultSet.getString("fullname"));
 			account.setStatus(resultSet.getInt("status"));
 			account.setEmail(resultSet.getString("email"));
-			account.setRoleid(resultSet.getLong("rolecode"));
-			try {
-				Role role = new Role();
-				role.setCode(resultSet.getString("code"));
-				role.setName(resultSet.getString("name"));
-				account.setRole(role);
-			}catch(Exception e) {
-				
-			}
+			account.setRolecode(resultSet.getString("rolecode"));
+			account.setCreatedBy(resultSet.getString("createby"));
+			account.setUpdateBy(resultSet.getString("updateby"));
+			account.setCreateTime(resultSet.getTimestamp("createtime"));
+			account.setUpdateTime(resultSet.getTimestamp("updatetime"));
 			return account;
 		} catch (SQLException e) {
 			e.printStackTrace();

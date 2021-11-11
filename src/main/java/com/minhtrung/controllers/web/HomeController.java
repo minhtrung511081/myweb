@@ -1,7 +1,6 @@
 package com.minhtrung.controllers.web;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.minhtrung.constant.constantC;
 import com.minhtrung.models.Account;
-import com.minhtrung.models.Product;
 import com.minhtrung.services.IAccountService;
 import com.minhtrung.services.IProductService;
 import com.minhtrung.utils.FormUtils;
@@ -60,9 +58,9 @@ public class HomeController extends HttpServlet{
 		Account accountService = getAccountService(MapRequestToModelAccount(request));
 		if (isUser(accountService)) {
 			putSessionAccount(request, constantC.KEY_SESSION, accountService);
-			if(accountService.getRole().getCode().equalsIgnoreCase(constantC.ADMIN)) {
+			if(accountService.getRolecode().equalsIgnoreCase(constantC.ADMIN)) {
 				response.sendRedirect(request.getContextPath()+"/admin-home");
-			}else if(accountService.getRole().getCode().equalsIgnoreCase(constantC.USER)){
+			}else if(accountService.getRolecode().equalsIgnoreCase(constantC.USER)){
 				response.sendRedirect(request.getContextPath()+"/trang-chu");
 			}
 		} else {

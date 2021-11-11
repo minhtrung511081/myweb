@@ -3,9 +3,6 @@ package com.minhtrung.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.inject.Inject;
-
-import com.minhtrung.daos.ICategoryDAO;
 import com.minhtrung.models.Product;
 
 public class ProductMapper implements RowMapper<Product>{
@@ -18,10 +15,10 @@ public class ProductMapper implements RowMapper<Product>{
 			product.setName(resultSet.getString("name"));
 			product.setCode(resultSet.getString("code"));
 			product.setPrice(resultSet.getFloat("price"));
-			product.setAmount(resultSet.getInt("amount"));
-			product.setCategoryid(resultSet.getLong("categoryid"));
+			product.setQuantity(resultSet.getInt("quantity"));
+			product.setCategorycode(resultSet.getString("categorycode"));
 			product.setCreatedBy(resultSet.getString("createby"));
-			product.setModifiedBy(resultSet.getString("modifiedby"));
+			product.setUpdateBy(resultSet.getString("updateby"));
 			product.setCreateTime(resultSet.getTimestamp("createtime"));
 			product.setUpdateTime(resultSet.getTimestamp("updatetime"));
 			return product;

@@ -14,5 +14,5 @@ public class AbstractModel {
     private Timestamp createTime;
     private Timestamp updateTime;
 	private String createdBy;
-	private String modifiedBy;
+	private String updateBy;
 }

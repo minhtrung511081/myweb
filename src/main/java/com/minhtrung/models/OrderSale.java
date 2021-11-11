@@ -1,21 +1,22 @@
 package com.minhtrung.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor @ToString @Setter @Getter
-public class PurchaseInvoice {
+public class OrderSale extends AbstractModel{
 	private String name;
 	private int gender;
 	private String phone;
     private String status;
+    private float total;
     private Long accountid;
-    
-   
-    private Integer totalMoney;
-    private String payments;
-    private String houseNumber;
-    private Integer town_id;
+    private String paymentscode;
+    private String towncode;
+    private List<SaleDetail> detail = new ArrayList<>();
 }

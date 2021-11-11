@@ -34,9 +34,9 @@ public class Authozation implements Filter {
 		if (url.startsWith("/ecommerce-servlet-jsp-jdbc/admin")) {
 			Account account = (Account) SessionUtils.getInstance().getValue(request, constantC.KEY_SESSION);
 			if (account != null) {
-				if (account.getRole().getCode().equalsIgnoreCase(constantC.ADMIN)) {
+				if (account.getRolecode().equalsIgnoreCase(constantC.ADMIN)) {
 					filterChain.doFilter(servletRequest, servletResponse);
-				} else if (account.getRole().getCode().equalsIgnoreCase(constantC.USER)) {
+				} else if (account.getRolecode().equalsIgnoreCase(constantC.USER)) {
 					response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=not_permission&alert=danger");
 				}
 			} else {

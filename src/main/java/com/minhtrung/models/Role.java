@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @ToString @Getter @Setter @NoArgsConstructor
 public class Role {
-	private Long id;
+	private String code;
 	private String name;
-    private String code;
+   
 }

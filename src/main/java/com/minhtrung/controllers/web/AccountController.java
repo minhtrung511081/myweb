@@ -53,9 +53,9 @@ public class AccountController extends HttpServlet {
 			Account service = getAccountService(MapRequestToModelAccount(request));
 			if (isUser(service)) {
 				putSessionAccount(request, constantC.KEY_SESSION, service);
-				if(service.getRole().getCode().equalsIgnoreCase(constantC.ADMIN)) {
+				if(service.getRolecode().equalsIgnoreCase(constantC.ADMIN)) {
 					PushDataClient(response, constantC.ADMIN);
-				}else if(service.getRole().getCode().equalsIgnoreCase(constantC.USER)){
+				}else if(service.getRolecode().equalsIgnoreCase(constantC.USER)){
 					PushDataClient(response, constantC.USER);
 				}
 			} else {

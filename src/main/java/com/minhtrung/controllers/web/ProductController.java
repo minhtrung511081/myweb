@@ -60,10 +60,12 @@ public class ProductController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("utf-8");
 		Account account =(Account) SessionUtils.getInstance().getValue(request, constantC.KEY_SESSION);
 		if(account!=null) {
 			Product product=HttpUtils.of(request.getReader()).toModel(Product.class);
 			product.setCreatedBy(account.getFullname());
+			
 			Long id = productService.insert(product);
 			mapper.writeValue(response.getOutputStream(), productService.findOne(id));
 		}else mapper.writeValue(response.getOutputStream(), constantC.ERROR_USER);
@@ -78,9 +80,6 @@ public class ProductController extends HttpServlet{
 		Product productRequest=HttpUtils.of(request.getReader()).toModel(Product.class);
 		Product productDB = productService.findOne(productRequest.getId());
 		if(account!=null && productDB!=null) {
-			productRequest.setModifiedBy(account.getFullname());
-			productRequest.setCreateTime(productDB.getCreateTime());
-			productRequest.setCreatedBy(productDB.getCreatedBy());
 			productService.update(productRequest);
 			mapper.writeValue(response.getOutputStream(), productService.findOne(productRequest.getId()));
 		}else mapper.writeValue(response.getOutputStream(), constantC.ERROR_USER);

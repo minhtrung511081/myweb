@@ -11,7 +11,6 @@ public class CategoryMapper implements RowMapper<Category>{
 	public Category mapRow(ResultSet resultSet) {
 		Category category = new Category();
 		try {
-			category.setId(resultSet.getLong("id"));
 			category.setName(resultSet.getString("name"));
 			category.setCode(resultSet.getString("code"));
 			return category;

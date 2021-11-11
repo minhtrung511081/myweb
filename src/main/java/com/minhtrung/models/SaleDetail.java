@@ -6,9 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Setter @Getter @NoArgsConstructor @ToString
-public class PurchaseDetail {
-	private String productcode;
+public class SaleDetail {
+	private Long productid;
 	private int quantity;
     private float price;
-    private int saleid;
+    private Long saleid;
 }

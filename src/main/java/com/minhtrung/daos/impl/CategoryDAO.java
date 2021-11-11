@@ -8,8 +8,8 @@ public class CategoryDAO extends AbstractDAO<Category> implements ICategoryDAO{
 
 	@Override
 	public Category findById(Category category) {
-		StringBuilder sql = new StringBuilder("select * from category where id=?");
-		return query(sql.toString(), new CategoryMapper(), category.getId()).get(0);
+		StringBuilder sql = new StringBuilder("select * from category where categorycode=?");
+		return query(sql.toString(), new CategoryMapper(), category.getCode()).get(0);
 	}
 
 }
